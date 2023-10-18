@@ -17,3 +17,5 @@ managed_services: klipper
 primary_branch: main
 install_script: install.sh
 ```
+
+then add `[include Klicky/_include.cfg]` and `[include Variables/klicky_variables.cfg]` to your printer.cfg.
