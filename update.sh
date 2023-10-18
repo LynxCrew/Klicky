@@ -6,13 +6,12 @@ local klickydirname klickybasename
 klickydirname="$(dirname ${KLICKY_PATH})"
 klickybasename="$(basename ${KLICKY_PATH})"
 
-echo "[DOWNLOAD] Downloading Klicky repository..."
-if git -C $klickydirname clone https://github.com/LynxCrew/Klicky.git $klickybasename; then
-  chmod +x ${KLICKY_PATH}/install.sh
-  printf "[DOWNLOAD] Download complete!\n\n"
+echo "[UPDATE] Upsating Klicky repository..."
+cd ${KLICKY_PATH}
+git pull origin
+chmod +x ${KLICKY_PATH}/install.sh
+chmod +x ${KLICKY_PATH}/update.sh
+  
+printf "[UPDATE] Download complete!\n\n"
 
-  bash ${KLICKY_PATH}/install.sh
-else
-  echo "[ERROR] Download of Klicky git repository failed!"
-  exit -1
-fi
+bash ${KLICKY_PATH}/install.sh
