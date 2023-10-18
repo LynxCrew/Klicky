@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 CONFIG_PATH="${HOME}/printer_data/config"
 KLICKY_PATH="${HOME}/klicky"
 
