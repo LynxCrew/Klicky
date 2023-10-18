@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 KLICKY_PATH="${HOME}/klicky"
 
 local klickydirname klickybasename
