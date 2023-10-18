@@ -3,10 +3,6 @@
 KLICKY_PATH="${HOME}/klicky"
 
 function update_repo {
-    local klickydirname klickybasename
-    klickydirname="$(dirname ${KLICKY_PATH})"
-    klickybasename="$(basename ${KLICKY_PATH})"
-
     echo "[UPDATE] Updating Klicky repository..."
     cd ${KLICKY_PATH}
     if git pull origin; then
