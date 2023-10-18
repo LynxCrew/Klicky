@@ -3,7 +3,7 @@
 ## Install:
 SSH into you pi and run:
 ```
-wget -O - https://raw.githubusercontent.com/andrewmcgr/klipper_tmc_autotune/main/install.sh | bash
+wget -O - https://raw.githubusercontent.com/LynxCrew/Klicky/main/install.sh | bash
 ```
 
 then add this to your moonraker.conf:
