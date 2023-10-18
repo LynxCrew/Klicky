@@ -46,10 +46,10 @@ function link_extension {
     ln -srfn "${KLICKY_PATH}/macros.cfg" "${CONFIG_PATH}/Klicky/macros.cfg"
     ln -srfn "${KLICKY_PATH}/database.cfg" "${CONFIG_PATH}/Klicky/database.cfg"
 	FILE=${CONFIG_PATH}/Variables/klicky_variables.cfg
-	if [ -f "$FILE" ]; then
-		echo "Variables file already exists"
-	else
+	if [ ! -d "$FILE" ]; then
 		cp "${KLICKY_PATH}/klicky_variables.cfg" "${CONFIG_PATH}/Variables/klicky_variables.cfg"
+	else
+		echo "Variables file already exists"
 	fi
 }
 
