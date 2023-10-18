@@ -44,10 +44,10 @@ function check_download {
 function link_extension {
     echo "[INSTALL] Linking extension to Klipper..."
     ln -srfn "${KLICKY_PATH}/Klicky" "${CONFIG_PATH}/Klicky"
-    cp "${KLICKY_PATH}/Klicky" "${CONFIG_PATH}/Klicky"
+    cp -rf "${KLICKY_PATH}/Klicky" "${CONFIG_PATH}/Klicky"
     chmod -R 644 "${CONFIG_PATH}/Klicky" && chmod 755 "${CONFIG_PATH}/Klicky"
     if [ ! -f "${CONFIG_PATH}/Variables/klicky_variables.cfg" ]; then
-        mkdir -p "${CONFIG_PATH}/Variables" && cp "${KLICKY_PATH}/Variables/klicky_variables.cfg" "${CONFIG_PATH}/Variables/klicky_variables.cfg"
+        mkdir -p "${CONFIG_PATH}/Variables" && cp -f "${KLICKY_PATH}/Variables/klicky_variables.cfg" "${CONFIG_PATH}/Variables/klicky_variables.cfg"
     else
         echo "Variables file already exists"
     fi
