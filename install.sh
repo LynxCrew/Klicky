@@ -42,15 +42,13 @@ function check_download {
 
 function link_extension {
     echo "[INSTALL] Linking extension to Klipper..."
-    ln -srfn "${KLICKY_PATH}/_include.cfg" "${CONFIG_PATH}/Klicky/_include.cfg"
-    ln -srfn "${KLICKY_PATH}/macros.cfg" "${CONFIG_PATH}/Klicky/macros.cfg"
-    ln -srfn "${KLICKY_PATH}/database.cfg" "${CONFIG_PATH}/Klicky/database.cfg"
-	FILE=${CONFIG_PATH}/Variables/klicky_variables.cfg
-	if [ ! -d "$FILE" ]; then
-		cp "${KLICKY_PATH}/klicky_variables.cfg" "${CONFIG_PATH}/Variables/klicky_variables.cfg"
-	else
-		echo "Variables file already exists"
-	fi
+    ln -srfn "${KLICKY_PATH}/Klicky" "${CONFIG_PATH}/Klicky"
+    FILE="${CONFIG_PATH}/Variables/klicky_variables.cfg"
+    if [ ! -d "$FILE" ]; then
+        mkdir -p "${CONFIG_PATH}/Variables" && cp "${KLICKY_PATH}/Variables/klicky_variables.cfg" "${CONFIG_PATH}/Variables/klicky_variables.cfg"
+    else
+        echo "Variables file already exists"
+    fi
 }
 
 function restart_klipper {
