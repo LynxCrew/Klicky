@@ -45,7 +45,7 @@ function link_extension {
     echo "[INSTALL] Linking extension to Klipper..."
     ln -srfn "${KLICKY_PATH}/Klicky" "${CONFIG_PATH}/Klicky"
     FILE="${CONFIG_PATH}/Variables/klicky_variables.cfg"
-    if [ ! -d "$FILE" ]; then
+    if [ ! -f "$FILE" ]; then
         mkdir -p "${CONFIG_PATH}/Variables" && cp "${KLICKY_PATH}/Variables/klicky_variables.cfg" "${CONFIG_PATH}/Variables/klicky_variables.cfg"
     else
         echo "Variables file already exists"
