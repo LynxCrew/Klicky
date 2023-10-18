@@ -44,9 +44,10 @@ function check_download {
 function link_extension {
     echo "[INSTALL] Linking extension to Klipper..."
     cp -rf "${KLICKY_PATH}/Klicky" "${CONFIG_PATH}/"
-    chmod -R 777 "${CONFIG_PATH}/Klicky"
-    chmod -R 644 "${CONFIG_PATH}/Klicky"
     chmod 755 "${CONFIG_PATH}/Klicky"
+    chmod 644 "${CONFIG_PATH}/Klicky/_include.cfg"
+    chmod 644 "${CONFIG_PATH}/Klicky/database.cfg"
+    chmod 644 "${CONFIG_PATH}/Klicky/macros.cfg"
     if [ ! -f "${CONFIG_PATH}/Variables/klicky_variables.cfg" ]; then
         mkdir -p "${CONFIG_PATH}/Variables" && cp -f "${KLICKY_PATH}/Variables/klicky_variables.cfg" "${CONFIG_PATH}/Variables/klicky_variables.cfg"
     else
