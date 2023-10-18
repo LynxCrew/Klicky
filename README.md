@@ -8,7 +8,7 @@ wget -O - https://raw.githubusercontent.com/andrewmcgr/klipper_tmc_autotune/main
 
 then add this to your moonraker.conf:
 ```
-[update_manager klipper_tmc_autotune]
+[update_manager klicky]
 type: git_repo
 channel: dev
 path: ~/klicky
