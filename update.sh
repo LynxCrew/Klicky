@@ -3,9 +3,9 @@
 KLICKY_PATH="${HOME}/klicky"
 
 function update_repo {
+    cd ${KLICKY_PATH}
     if git rev-list HEAD...origin/main --count > 0; then
         echo "[UPDATE] Updating Klicky repository..."
-        cd ${KLICKY_PATH}
         if git pull origin; then
             printf "[UPDATE] Download complete!\n\n"
         else
