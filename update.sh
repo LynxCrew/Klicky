@@ -8,7 +8,6 @@ klickybasename="$(basename ${KLICKY_PATH})"
 
 echo "[UPDATE] Upsating Klicky repository..."
 cd ${KLICKY_PATH}
-git reset --hard
 git pull origin
 chmod +x ${KLICKY_PATH}/install.sh
   
