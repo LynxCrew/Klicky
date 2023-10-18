@@ -32,7 +32,7 @@ function check_download {
             chmod +x ${KLICKY_PATH}/install.sh
             printf "[DOWNLOAD] Download complete!\n\n"
         else
-            echo "[ERROR] Download of Autotune TMC git repository failed!"
+            echo "[ERROR] Download of Klicky git repository failed!"
             exit -1
         fi
     else
