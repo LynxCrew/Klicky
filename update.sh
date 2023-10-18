@@ -2,15 +2,25 @@
 
 KLICKY_PATH="${HOME}/klicky"
 
-local klickydirname klickybasename
-klickydirname="$(dirname ${KLICKY_PATH})"
-klickybasename="$(basename ${KLICKY_PATH})"
+function update_repo {
+    local klickydirname klickybasename
+    klickydirname="$(dirname ${KLICKY_PATH})"
+    klickybasename="$(basename ${KLICKY_PATH})"
 
-echo "[UPDATE] Upsating Klicky repository..."
-cd ${KLICKY_PATH}
-git pull origin
-chmod +x ${KLICKY_PATH}/install.sh
-  
-printf "[UPDATE] Download complete!\n\n"
+    echo "[UPDATE] Updating Klicky repository..."
+    cd ${KLICKY_PATH}
+    if git pull origin; then
+        printf "[UPDATE] Download complete!\n\n"
+    else
+        echo "[ERROR] Download of Klicky git repository failed!"
+        exit -1
+    fi
+}
 
-bash ${KLICKY_PATH}/install.sh
+function install {
+    chmod +x ${KLICKY_PATH}/install.sh
+    bash ${KLICKY_PATH}/install.sh
+}
+
+update_repo
+install
