@@ -43,7 +43,6 @@ function check_download {
 
 function link_extension {
     echo "[INSTALL] Linking extension to Klipper..."
-    rm -R "${CONFIG_PATH}/Klicky"
     cp -rf "${KLICKY_PATH}/Klicky" "${CONFIG_PATH}/"
     chmod 755 "${CONFIG_PATH}/Klicky"
     for FILE in "${CONFIG_PATH}/Klicky"; do
