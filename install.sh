@@ -47,6 +47,9 @@ function link_extension {
     rm -R "${CONFIG_PATH}/Klicky"
     cp -rf "${KLICKY_PATH}/Klicky" "${CONFIG_PATH}/"
     chmod 755 "${CONFIG_PATH}/Klicky"
+    for FILE in "${CONFIG_PATH}/Klicky/*"; do
+        chmod 644 "$FILE"
+    done
     if [ ! -f "${CONFIG_PATH}/Variables/klicky_variables.cfg" ]; then
         mkdir -p "${CONFIG_PATH}/Variables" && cp -f "${KLICKY_PATH}/Variables/klicky_variables.cfg" "${CONFIG_PATH}/Variables/klicky_variables.cfg"
     else
