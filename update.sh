@@ -2,6 +2,7 @@
 
 KLICKY_PATH="${HOME}/klicky"
 
+
 function update_repo {
     cd ${KLICKY_PATH}
     git fetch origin
