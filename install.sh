@@ -45,7 +45,7 @@ function link_extension {
     echo "[INSTALL] Linking extension to Klipper..."
     chmod -R 777 "${CONFIG_PATH}/Klicky"
     rm -R "${CONFIG_PATH}/Klicky"
-    cp -rf "${KLICKY_PATH}/Klicky" "${CONFIG_PATH}/"
+    cp -rf "${KLICKY_PATH}/Klicky" "${CONFIG_PATH}/Klicky"
     chmod 755 "${CONFIG_PATH}/Klicky"
     for FILE in "${CONFIG_PATH}/Klicky/*"; do
         chmod 644 "$FILE"
