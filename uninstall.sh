@@ -44,9 +44,9 @@ function uninstall_macros {
             fi
             break;;
           N|n|No|no|"")
-            exit 0
+            exit 0;;
           *)
-            echo "${red}Invalid Input!"
+            echo "${red}Invalid Input!";;
         esac
     done
 }
@@ -65,9 +65,9 @@ function uninstall_variables {
             fi
             break;;
           N|n|No|no|"")
-            exit 0
+            exit 0;;
           *)
-            echo "${red}Invalid Input!"
+            echo "${red}Invalid Input!";;
         esac
     done
 }
