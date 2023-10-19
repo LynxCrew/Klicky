@@ -21,7 +21,7 @@ function preflight_checks {
     fi
 }
 
-funtion uninstall_macros {
+function uninstall_macros {
     local yn
     while true; do
         read -p "${blue}Do you really want to uninstall Klicky? (Y/n):${white} " yn
