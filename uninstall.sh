@@ -2,6 +2,9 @@
 
 CONFIG_PATH="${HOME}/printer_data/config"
 KLICKY_PATH="${HOME}/klicky"
+red=$(echo -en "\e[91m")
+cyan=$(echo -en "\e[96m")
+white=$(echo -en "\e[39m")
 
 set -eu
 export LC_ALL=C
@@ -24,7 +27,7 @@ function preflight_checks {
 function uninstall_macros {
     local yn
     while true; do
-        read -p "${blue}Do you really want to uninstall Klicky? (Y/n):${white} " yn
+        read -p "${cyan}Do you really want to uninstall Klicky? (Y/n):${white} " yn
         case "${yn}" in
           Y|y|Yes|yes)
             if [ -d "${CONFIG_PATH}/Klicky" ]; then
@@ -54,7 +57,7 @@ function uninstall_macros {
 function uninstall_variables {
     local yn
     while true; do
-        read -p "${blue}Do you also want to uninstall your configuration? (Y/n):${white} " yn
+        read -p "${cyan}Do you also want to uninstall your configuration? (Y/n):${white} " yn
         case "${yn}" in
           Y|y|Yes|yes)
             if [ -f "${CONFIG_PATH}/Variables/klicky_variables.cfg" ]; then
