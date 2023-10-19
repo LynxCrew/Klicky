@@ -31,6 +31,7 @@ function check_download {
         if git -C $klickydirname clone https://github.com/LynxCrew/Klicky.git $klickybasename; then
             chmod +x ${KLICKY_PATH}/install.sh
             chmod +x ${KLICKY_PATH}/update.sh
+            chmod +x ${KLICKY_PATH}/uninstall.sh
             printf "[DOWNLOAD] Download complete!\n\n"
         else
             echo "[ERROR] Download of Klicky git repository failed!"
