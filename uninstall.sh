@@ -42,7 +42,7 @@ function uninstall_macros {
                 echo "${red}Klicky folder not found!"
                 exit -1
             fi
-          N|n|No|no|"")
+          N|n|No|no)
             exit 0
           *)
             echo "${red}Invalid Input!"
@@ -62,7 +62,7 @@ function uninstall_variables {
             else
                 echo "${red}klicky_variables.cfg does not exist!"
             fi
-          N|n|No|no|"")
+          N|n|No|no)
             exit 0
           *)
             echo "${red}Invalid Input!"
