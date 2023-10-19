@@ -39,6 +39,8 @@ function update_repo {
 
 function install {
     chmod +x ${KLICKY_PATH}/install.sh
+    chmod +x ${KLICKY_PATH}/update.sh
+    chmod +x ${KLICKY_PATH}/uninstall.sh
     bash ${KLICKY_PATH}/install.sh
 }
 
