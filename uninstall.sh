@@ -2,6 +2,7 @@
 
 CONFIG_PATH="${HOME}/printer_data/config"
 KLICKY_PATH="${HOME}/klicky"
+green=$(echo -en "\e[92m")
 red=$(echo -en "\e[91m")
 cyan=$(echo -en "\e[96m")
 white=$(echo -en "\e[39m")
@@ -33,14 +34,16 @@ function uninstall_macros {
             if [ -d "${CONFIG_PATH}/Klicky" ]; then
                 chmod -R 777 "${CONFIG_PATH}/Klicky"
                 rm -R "${CONFIG_PATH}/Klicky"
+                echo "${green}Klicky config folder removed"
             else
-                echo "${red}Klicky Config folder not found!"
+                echo "${red}Klicky config folder not found!"
                 exit -1
             fi
 
             if [ -d "${KLICKY_PATH}" ]; then
                 chmod -R 777 "${KLICKY_PATH}"
                 rm -R "${KLICKY_PATH}"
+                echo "${green}Klicky folder removed"
             else
                 echo "${red}Klicky folder not found!"
                 exit -1
@@ -63,6 +66,7 @@ function uninstall_variables {
             if [ -f "${CONFIG_PATH}/Variables/klicky_variables.cfg" ]; then
                 chmod -R 777 "${CONFIG_PATH}/Variables/klicky_variables.cfg"
                 rm -R "${CONFIG_PATH}/Variables/klicky_variables.cfg"
+                echo "${green}Klicky configuration removed"
             else
                 echo "${red}klicky_variables.cfg does not exist!"
             fi
