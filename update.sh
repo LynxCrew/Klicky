@@ -2,6 +2,24 @@
 
 KLICKY_PATH="${HOME}/klicky"
 
+set -eu
+export LC_ALL=C
+
+
+function preflight_checks {
+    if [ "$EUID" -eq 0 ]; then
+        echo "[PRE-CHECK] This script must not be run as root!"
+        exit -1
+    fi
+
+    if [ "$(sudo systemctl list-units --full -all -t service --no-legend | grep -F 'klipper.service')" ]; then
+        printf "[PRE-CHECK] Klipper service found! Continuing...\n\n"
+    else
+        echo "[ERROR] Klipper service not found, please install Klipper first!"
+        exit -1
+    fi
+}
+
 function update_repo {
     cd ${KLICKY_PATH}
     git fetch origin
@@ -24,5 +42,6 @@ function install {
     bash ${KLICKY_PATH}/install.sh
 }
 
+preflight_checks
 update_repo
 install
