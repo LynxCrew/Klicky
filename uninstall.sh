@@ -1,7 +1,7 @@
 #!/bin/bash
 
 CONFIG_PATH="${HOME}/printer_data/config"
-KLICKY_PATH="${HOME}/klicky"
+REPO_PATH="${HOME}/klicky"
 OVERRIDES=("HOMING" "Z_TILT_ADJUST" "PROBE" "PROBE_ACCURACY" "PROBE_CALIBRATE")
 VARIABLES=("park" "homing" "probe" "klicky")
 green=$(echo -en "\e[92m")
@@ -51,9 +51,9 @@ function uninstall_macros {
                 fi
             done
 
-            if [ -d "${KLICKY_PATH}" ]; then
-                chmod -R 777 "${KLICKY_PATH}"
-                rm -R "${KLICKY_PATH}"
+            if [ -d "${REPO_PATH}" ]; then
+                chmod -R 777 "${REPO_PATH}"
+                rm -R "${REPO_PATH}"
                 echo "${green}Klicky folder removed"
             else
                 echo "${red}Klicky folder not found!"

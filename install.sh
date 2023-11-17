@@ -1,7 +1,7 @@
 #!/bin/bash
 
 CONFIG_PATH="${HOME}/printer_data/config"
-KLICKY_PATH="${HOME}/klicky"
+REPO_PATH="${HOME}/klicky"
 OVERRIDES=("HOMING" "Z_TILT_ADJUST" "PROBE" "PROBE_ACCURACY" "PROBE_CALIBRATE")
 VARIABLES=("park" "homing" "probe" "klicky")
 
@@ -25,15 +25,15 @@ function preflight_checks {
 
 function check_download {
     local klickydirname klickybasename
-    klickydirname="$(dirname ${KLICKY_PATH})"
-    klickybasename="$(basename ${KLICKY_PATH})"
+    klickydirname="$(dirname ${REPO_PATH})"
+    klickybasename="$(basename ${REPO_PATH})"
 
-    if [ ! -d "${KLICKY_PATH}" ]; then
+    if [ ! -d "${REPO_PATH}" ]; then
         echo "[DOWNLOAD] Downloading Klicky repository..."
         if git -C $klickydirname clone https://github.com/LynxCrew/Klicky.git $klickybasename; then
-            chmod +x ${KLICKY_PATH}/install.sh
-            chmod +x ${KLICKY_PATH}/update.sh
-            chmod +x ${KLICKY_PATH}/uninstall.sh
+            chmod +x ${REPO_PATH}/install.sh
+            chmod +x ${REPO_PATH}/update.sh
+            chmod +x ${REPO_PATH}/uninstall.sh
             printf "[DOWNLOAD] Download complete!\n\n"
         else
             echo "[ERROR] Download of Klicky git repository failed!"
@@ -52,7 +52,7 @@ function link_extension {
         rm -R "${CONFIG_PATH}/Klicky"
     fi
 
-    cp -rf "${KLICKY_PATH}/Klicky" "${CONFIG_PATH}/Klicky"
+    cp -rf "${REPO_PATH}/Klicky" "${CONFIG_PATH}/Klicky"
     chmod 755 "${CONFIG_PATH}/Klicky"
     for FILE in "${CONFIG_PATH}/Klicky/*"; do
         chmod 644 $FILE
@@ -62,7 +62,7 @@ function link_extension {
     for OVERRIDE in ${OVERRIDES[@]}; do
         chmod -R 777 "${CONFIG_PATH}/Overrides/override_${OVERRIDE}.cfg"
         rm -R "${CONFIG_PATH}/Overrides/override_${OVERRIDE}.cfg"
-        cp -rf "${KLICKY_PATH}/Overrides/override_${OVERRIDE}.cfg" "${CONFIG_PATH}/Overrides/override_${OVERRIDE}.cfg"
+        cp -rf "${REPO_PATH}/Overrides/override_${OVERRIDE}.cfg" "${CONFIG_PATH}/Overrides/override_${OVERRIDE}.cfg"
     done
     
     chmod 755 "${CONFIG_PATH}/Overrides"
@@ -74,7 +74,7 @@ function link_extension {
     mkdir -p "${CONFIG_PATH}/Variables"
     for VARIABLE in ${VARIABLES[@]}; do
         if [ ! -f "${CONFIG_PATH}/Variables/${VARIABLE}_variables.cfg" ]; then
-            cp -f "${KLICKY_PATH}/Variables/${VARIABLE}_variables.cfg" "${CONFIG_PATH}/Variables/${VARIABLE}_variables.cfg"
+            cp -f "${REPO_PATH}/Variables/${VARIABLE}_variables.cfg" "${CONFIG_PATH}/Variables/${VARIABLE}_variables.cfg"
         else
             echo "${VARIABLE}-variables file already exists"
         fi

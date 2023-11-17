@@ -1,6 +1,6 @@
 #!/bin/bash
 
-KLICKY_PATH="${HOME}/klicky"
+REPO_PATH="${HOME}/klicky"
 
 set -eu
 export LC_ALL=C
@@ -21,7 +21,7 @@ function preflight_checks {
 }
 
 function update_repo {
-    cd ${KLICKY_PATH}
+    cd ${REPO_PATH}
     git fetch origin
     if [ `git rev-list HEAD...origin/main --count` != 0 ]; then
         echo "[UPDATE] Updating Klicky repository..."
@@ -38,10 +38,10 @@ function update_repo {
 }
 
 function install {
-    chmod +x ${KLICKY_PATH}/install.sh
-    chmod +x ${KLICKY_PATH}/update.sh
-    chmod +x ${KLICKY_PATH}/uninstall.sh
-    bash ${KLICKY_PATH}/install.sh
+    chmod +x ${REPO_PATH}/install.sh
+    chmod +x ${REPO_PATH}/update.sh
+    chmod +x ${REPO_PATH}/uninstall.sh
+    bash ${REPO_PATH}/install.sh
 }
 
 preflight_checks
