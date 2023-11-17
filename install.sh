@@ -2,6 +2,8 @@
 
 CONFIG_PATH="${HOME}/printer_data/config"
 KLICKY_PATH="${HOME}/klicky"
+OVERRIDES=("HOMING" "Z_TILT_ADJUST" "PROBE" "PROBE_ACCURACY" "PROBE_CALIBRATE")
+VARIABLES=("park" "homing" "probe" "klicky")
 
 set -eu
 export LC_ALL=C
@@ -49,17 +51,39 @@ function link_extension {
         chmod -R 777 "${CONFIG_PATH}/Klicky"
         rm -R "${CONFIG_PATH}/Klicky"
     fi
-    
+
     cp -rf "${KLICKY_PATH}/Klicky" "${CONFIG_PATH}/Klicky"
     chmod 755 "${CONFIG_PATH}/Klicky"
     for FILE in "${CONFIG_PATH}/Klicky/*"; do
         chmod 644 $FILE
     done
-    if [ ! -f "${CONFIG_PATH}/Variables/klicky_variables.cfg" ]; then
-        mkdir -p "${CONFIG_PATH}/Variables" && cp -f "${KLICKY_PATH}/Variables/klicky_variables.cfg" "${CONFIG_PATH}/Variables/klicky_variables.cfg"
-    else
-        echo "Variables file already exists"
-    fi
+
+
+    for OVERRIDE in ${OVERRIDES[@]}; do
+        chmod -R 777 "${CONFIG_PATH}/Overrides/override_${OVERRIDE}.cfg"
+        rm -R "${CONFIG_PATH}/Overrides/override_${OVERRIDE}.cfg"
+        cp -rf "${KLICKY_PATH}/Overrides/override_${OVERRIDE}.cfg" "${CONFIG_PATH}/Overrides/override_${OVERRIDE}.cfg"
+    done
+    
+    chmod 755 "${CONFIG_PATH}/Overrides"
+    for FILE in "${CONFIG_PATH}/Overrides/*"; do
+        chmod 644 $FILE
+    done
+
+
+    mkdir -p "${CONFIG_PATH}/Variables"
+    for VARIABLE in ${VARIABLES[@]}; do
+        if [ ! -f "${CONFIG_PATH}/Variables/${VARIABLE}_variables.cfg" ]; then
+            cp -f "${KLICKY_PATH}/Variables/${VARIABLE}_variables.cfg" "${CONFIG_PATH}/Variables/${VARIABLE}_variables.cfg"
+        else
+            echo "${VARIABLE}-variables file already exists"
+        fi
+    done
+
+    chmod 755 "${CONFIG_PATH}/Variables"
+    for FILE in "${CONFIG_PATH}/Variables/*"; do
+        chmod 644 $FILE
+    done
 }
 
 function restart_klipper {
