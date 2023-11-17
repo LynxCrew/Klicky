@@ -2,6 +2,8 @@
 
 CONFIG_PATH="${HOME}/printer_data/config"
 KLICKY_PATH="${HOME}/klicky"
+OVERRIDES=("HOMING" "Z_TILT_ADJUST" "PROBE" "PROBE_ACCURACY" "PROBE_CALIBRATE")
+VARIABLES=("park" "homing" "probe" "klicky")
 green=$(echo -en "\e[92m")
 red=$(echo -en "\e[91m")
 cyan=$(echo -en "\e[96m")
@@ -37,8 +39,17 @@ function uninstall_macros {
                 echo "${green}Klicky config folder removed"
             else
                 echo "${red}Klicky config folder not found!"
-                exit -1
             fi
+
+            for OVERRIDE in ${OVERRIDES[@]}; do
+                if [ -f "${CONFIG_PATH}/Overrides/override_${OVERRIDE}.cfg" ]; then
+                    chmod -R 777 "${CONFIG_PATH}/Overrides/override_${OVERRIDE}.cfg"
+                    rm -R "${CONFIG_PATH}/Overrides/override_${OVERRIDE}.cfg"
+                    echo "${green}${OVERRIDE} override removed"
+                else
+                    echo "${red}override_${OVERRIDE}.cfg not found!"
+                fi
+            done
 
             if [ -d "${KLICKY_PATH}" ]; then
                 chmod -R 777 "${KLICKY_PATH}"
@@ -46,7 +57,6 @@ function uninstall_macros {
                 echo "${green}Klicky folder removed"
             else
                 echo "${red}Klicky folder not found!"
-                exit -1
             fi
             break;;
           N|n|No|no|"")
@@ -63,13 +73,15 @@ function uninstall_variables {
         read -p "${cyan}Do you also want to uninstall your configuration? (Y/n):${white} " yn
         case "${yn}" in
           Y|y|Yes|yes)
-            if [ -f "${CONFIG_PATH}/Variables/klicky_variables.cfg" ]; then
-                chmod -R 777 "${CONFIG_PATH}/Variables/klicky_variables.cfg"
-                rm -R "${CONFIG_PATH}/Variables/klicky_variables.cfg"
-                echo "${green}Klicky configuration removed"
-            else
-                echo "${red}klicky_variables.cfg does not exist!"
-            fi
+            for VARIABLE in ${VARIABLES[@]}; do
+                if [ -f "${CONFIG_PATH}/Variables/${VARIABLE}_variables.cfg" ]; then
+                    chmod -R 777 "${CONFIG_PATH}/Variables/${VARIABLE}_variables.cfg"
+                    rm -R "${CONFIG_PATH}/Variables/${VARIABLE}_variables.cfg"
+                    echo "${green}${VARIABLE} configuration removed"
+                else
+                    echo "${red}${VARIABLES}_variables.cfg does not exist!"
+                fi
+            done
             break;;
           N|n|No|no|"")
             exit 0;;
