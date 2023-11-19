@@ -3,6 +3,7 @@
 ## Install:
 SSH into you pi and run:
 ```
+cd ~
 wget -O - https://raw.githubusercontent.com/LynxCrew/Klicky/main/install.sh | bash
 ```
 
