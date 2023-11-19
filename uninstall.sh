@@ -2,7 +2,7 @@
 
 CONFIG_PATH="${HOME}/printer_data/config"
 REPO_PATH="${HOME}/klicky"
-OVERRIDES=("HOMING" "Z_TILT_ADJUST" "PROBE" "PROBE_ACCURACY" "PROBE_CALIBRATE")
+OVERRIDES=("HOMING" "Z_TILT_ADJUST" "PROBE" "PROBE_ACCURACY" "PROBE_CALIBRATE" "BED_MESH_CALIBRATE")
 VARIABLES=("park" "homing" "probe" "klicky")
 green=$(echo -en "\e[92m")
 red=$(echo -en "\e[91m")
