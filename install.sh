@@ -60,8 +60,10 @@ function link_extension {
 
 
     for OVERRIDE in ${OVERRIDES[@]}; do
-        chmod -R 777 "${CONFIG_PATH}/Overrides/override_${OVERRIDE}.cfg"
-        rm -R "${CONFIG_PATH}/Overrides/override_${OVERRIDE}.cfg"
+        if [ -f "${CONFIG_PATH}/Overrides/override_${OVERRIDE}.cfg" ]; then
+            chmod -R 777 "${CONFIG_PATH}/Overrides/override_${OVERRIDE}.cfg"
+            rm -R "${CONFIG_PATH}/Overrides/override_${OVERRIDE}.cfg"
+        fi
         cp -rf "${REPO_PATH}/Overrides/override_${OVERRIDE}.cfg" "${CONFIG_PATH}/Overrides/override_${OVERRIDE}.cfg"
     done
     
