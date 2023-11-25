@@ -59,6 +59,7 @@ function link_extension {
     done
 
 
+    mkdir -p "${CONFIG_PATH}/Overrides"
     for OVERRIDE in ${OVERRIDES[@]}; do
         if [ -f "${CONFIG_PATH}/Overrides/override_${OVERRIDE}.cfg" ]; then
             chmod -R 777 "${CONFIG_PATH}/Overrides/override_${OVERRIDE}.cfg"
