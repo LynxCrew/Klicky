@@ -1,6 +1,7 @@
 # LynxCrew Klicky Macros
 
 ## Install:
+
 SSH into you pi and run:
 ```
 cd ~
